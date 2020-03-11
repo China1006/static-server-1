@@ -27,7 +27,7 @@ var server = http.createServer(function(request, response) {
 
   response.statusCode = 200;
 
-  const filePath = path === "/" ? "index.html" : path; //默认首页
+  const filePath = path === "/" ? "/index.html" : path; //默认首页
   const index = filePath.lastIndexOf(".");
   //获取.后面的内容
   const suffix = filePath.substring(index);
@@ -48,7 +48,9 @@ var server = http.createServer(function(request, response) {
   try {
     content = fs.readFileSync(`./public${filePath}`);
   } catch (error) {
+    console.log(path);
     content = "文件不存在";
+
     response.statusCode = 404;
   }
 
